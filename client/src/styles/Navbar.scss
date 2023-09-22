@@ -1,0 +1,91 @@
+@import "./variables.scss";
+
+.navbar {
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  img {
+    width: 100px;
+    cursor: pointer;
+  }
+
+  &_search {
+    border: 1px solid $lightgrey;
+    border-radius: 20px;
+    height: 40px;
+    padding: 0px 20px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    input {
+      border: none;
+      outline: none;
+    }
+
+    &:hover {
+      @include shadow;
+    }
+  }
+
+  &_right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    p {
+      color: $grey;
+      font-weight: 600;
+      cursor: pointer;
+
+      &:hover {
+        color: $pinkred;
+      }
+    }
+
+    &_account {
+      height: 40px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      border: 1px solid $lightgrey;
+      border-radius: 20px;
+      display: flex;
+      gap: 10px;
+      background-color: white;
+      cursor: pointer;
+
+      &:hover {
+        @include shadow;
+      }
+    }
+
+    &_accountmenu {
+      position: absolute;
+      right: 60px;
+      top: 80px;
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      padding: 10px 0;
+      border: 1px solid $lightgrey;
+      border-radius: 20px;
+      @include shadow;
+
+      a {
+        width: 100%;
+        padding: 8px 15px;
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+          color: $pinkred;
+          background-color: rgba(217, 213, 213, 0.2);
+        }
+      }
+    }
+  }
+}
