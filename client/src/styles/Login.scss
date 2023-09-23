@@ -1,13 +1,13 @@
 @import "./variables.scss";
 
-.register {
+.login {
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: url("../../public/assets/register.jpg") center;
+  background: url("../../public/assets/login.jpg") center;
   background-size: cover;
 
   &_content {
@@ -44,21 +44,6 @@
         }
       }
 
-      label {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 9px;
-        cursor: pointer;
-        color: white;
-        font-size: 14px;
-
-        img {
-          width: 25px;
-        }
-      }
-
       button {
         margin-top: 15px;
 
@@ -75,12 +60,18 @@
       text-decoration: none;
       color: white;
       font-size: 13px;
-      margin-top: 10px;
       text-align: center;
 
       &:hover {
         text-decoration: underline;
       }
+    }
+
+    p {
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
     }
   }
 }

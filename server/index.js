@@ -2,11 +2,12 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
+const cors = require("cors")
 
 const authRoutes = require("./routes/auth.js")
 
-// app.use(cors());
-// app.use(express.json());
+app.use(cors()); // Block other request which is not from your domain
+app.use(express.json());
 
 /* ROUTES */
 app.use("/auth", authRoutes)

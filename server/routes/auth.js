@@ -19,12 +19,20 @@ const upload = multer({ storage });
 
 /* USER REGISTER */
 
-router.post("/register", upload.single("profileImage"), async (req, res) => {
+router.post("/register", upload.single('profileImage'), async (req, res) => {
   try {
     /* Take information from the form */
-    const { firstName, lastName, email, password, address, phone } = req.body;
-    // Path to the uploaded profile photo
-    const profileImagePath = req.file.path;
+    const { firstName, lastName, email, password } = req.body;
+
+    /* The uploaded file is available as req.file */
+    const profileImage = req.file;
+
+    if (!profileImage) {
+      return res.status(400).send("No file uploaded.");
+    }
+    
+    /* Path to the uploaded profile photo */
+    const profileImagePath = profileImage.path;
 
     /* Check if user exists */
     const existingUser = await User.findOne({ email });
@@ -94,6 +102,3 @@ router.post("/login", async (req, res) => {
 });
 
 module.exports = router;
-
-
-
