@@ -1,0 +1,91 @@
+@import "../styles/variables.scss";
+
+.create-listing {
+  background-color: $lightgrey;
+  padding: 40px 60px;
+
+  h1 {
+    color: $blue;
+  }
+
+  &_step1 {
+    background-color: white;
+    padding: 20px 40px;
+    border-radius: 20px;
+    margin-top: 40px;
+
+    hr {
+      margin: 15px 0 25px;
+    }
+
+    .category-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 20px 0 40px;
+
+      .category {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 110px;
+        height: 90px;
+        border: 1px solid $grey;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.2s ease;
+
+        &_icon {
+          font-size: 30px;
+        }
+
+        p {
+          font-weight: 600;
+        }
+
+        &:hover {
+          border: 2px solid $pinkred;
+          background-color: $lightgrey;
+          color: $pinkred;
+        }
+      }
+    }
+  }
+
+  .type-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+
+    .type {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 600px;
+      padding: 15px 30px;
+      border: 1px solid $grey;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.2s ease;
+
+      &_text {
+        max-width: 400px;
+
+        h4 {
+          margin-bottom: 5px;
+        }
+      }
+
+      &_icon {
+        font-size: 30px;
+      }
+
+      &:hover {
+        border: 2px solid $pinkred;
+        background-color: $lightgrey;
+      }
+    }
+  }
+}

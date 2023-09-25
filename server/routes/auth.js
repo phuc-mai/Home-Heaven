@@ -45,7 +45,7 @@ router.post("/register", upload.single('profileImage'), async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     /* Create a new User */
-    const newUser = {
+    const newUser = new User({
       firstName,
       lastName,
       email,
@@ -54,15 +54,15 @@ router.post("/register", upload.single('profileImage'), async (req, res) => {
       wishList: [],
       propertyList: [],
       tripList: [],
-    };
+    });
 
     /* save new User */
-    const savedUser = await User.create(newUser);
+    await newUser.save()
 
     /* Send a success response */
     res
       .status(200)
-      .json({ message: "User registered successfully!", user: savedUser });
+      .json({ message: "User registered successfully!", user: newUser });
     /* Handle any errors that occur during registration */
   } catch (err) {
     console.log(err);
@@ -100,5 +100,20 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+/* USER LOGIN */
+router.post("/googlelogin", async (req, res) => {
+  try {
+    /* Send the user data in the request body */
+    const userData = req.body;
+
+    res.status(200).json({ user: userData });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 
 module.exports = router;

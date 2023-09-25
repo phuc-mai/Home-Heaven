@@ -1,8 +1,8 @@
 $pinkred: #F8395A;
 $blue: #24355A;
-$lightgrey: #DDDDDD;
-$grey: #555555;
-$white: #ffffff;
+$lightgrey: #F7F8F8;
+$grey: #bdb9b9;
+$darkgrey: #969393;
 
 
 @mixin shadow {
@@ -26,5 +26,5 @@ $white: #ffffff;
   blue: $blue;
   lightgrey: $lightgrey;
   grey: $grey;
-  white: $white
+  darkgrey: $darkgrey;
 }

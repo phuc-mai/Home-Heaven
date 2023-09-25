@@ -1,17 +1,21 @@
 import { IconButton } from "@mui/material";
 import { Person, Search, Menu } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 import "../styles/Navbar.scss";
 import variables from "../styles/variables.scss";
+import { setLogout } from "../redux/userRedux";
 
 const Navbar = () => {
   const [dropdownMenu, setDropdownMenu] = useState(false);
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch()
 
   return (
     <div className="navbar">
-      <img src="/assets/logo.png" alt="logo" />
+      <img src="/assets/logo.png" alt="logo" href="/" />
 
       <div className="navbar_search">
         <input placeholder="Search..." />
@@ -21,25 +25,39 @@ const Navbar = () => {
       </div>
 
       <div className="navbar_right">
-        <p>Become A Host</p>
+        <a href="/create-listing">Become A Host</a>
 
-        <button className="navbar_right_account" onClick={() => setDropdownMenu(!dropdownMenu)}>
-          <Menu sx={{ color: variables.grey }} />
-          <Person sx={{ color: variables.grey }} />
+        <button
+          className="navbar_right_account"
+          onClick={() => setDropdownMenu(!dropdownMenu)}
+        >
+          <Menu sx={{ color: variables.darkgrey }} />
+          {!user ? (
+            <Person sx={{ color: variables.darkgrey }} />
+          ) : (
+            <img
+              src={`http://localhost:3001/${user.profileImagePath.replace('public','')}`}
+              alt="Profile"
+              style={{ objectFit: "cover", borderRadius: "50%" }}
+            />
+          )}
         </button>
 
-        {dropdownMenu && (
-        <div className="navbar_right_accountmenu">
-          <Link to="/login">
-            Log In
-          </Link>
-          <Link to="/register">
-            Sign Up
-          </Link>
-          <Link to="/become-a-host">
-            Become A Host
-          </Link>
-        </div>)}
+        {dropdownMenu && !user && (
+          <div className="navbar_right_accountmenu">
+            <Link to="/login">Log In</Link>
+            <Link to="/register">Sign Up</Link>
+          </div>
+        )}
+
+        {dropdownMenu && user && (
+          <div className="navbar_right_accountmenu">
+            <Link>Trip List</Link>
+            <Link>Wish List</Link>
+            <Link>Property List</Link>
+            <Link onClick={() => dispatch(setLogout())}>Log Out</Link>
+          </div>
+        )}
       </div>
     </div>
   );

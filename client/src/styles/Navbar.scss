@@ -13,12 +13,12 @@
   }
 
   &_search {
-    border: 1px solid $lightgrey;
-    border-radius: 20px;
-    height: 40px;
+    border: 1px solid $grey;
+    border-radius: 30px;
+    height: 50px;
     padding: 0px 20px;
     display: flex;
-    gap: 10px;
+    gap: 40px;
     align-items: center;
 
     input {
@@ -36,9 +36,10 @@
     align-items: center;
     gap: 20px;
 
-    p {
-      color: $grey;
-      font-weight: 600;
+    a {
+      text-decoration: none;
+      color: $blue;
+      font-weight: 700;
       cursor: pointer;
 
       &:hover {
@@ -47,12 +48,12 @@
     }
 
     &_account {
-      height: 40px;
+      height: 50px;
       display: flex;
       align-items: center;
       padding: 0 10px;
-      border: 1px solid $lightgrey;
-      border-radius: 20px;
+      border: 1px solid $grey;
+      border-radius: 30px;
       display: flex;
       gap: 10px;
       background-color: white;
@@ -61,10 +62,15 @@
       &:hover {
         @include shadow;
       }
+
+      img {
+        width: 40px;
+      }
     }
 
     &_accountmenu {
       position: absolute;
+      background-color: white;
       right: 60px;
       top: 80px;
       display: flex;
@@ -79,7 +85,8 @@
         width: 100%;
         padding: 8px 15px;
         text-decoration: none;
-        color: black;
+        color: $blue;
+        font-weight: 700;
 
         &:hover {
           color: $pinkred;

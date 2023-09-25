@@ -9,6 +9,9 @@ const authRoutes = require("./routes/auth.js")
 app.use(cors()); // Block other request which is not from your domain
 app.use(express.json());
 
+/* Serve static files from the "public" directory */
+app.use(express.static('public'));
+
 /* ROUTES */
 app.use("/auth", authRoutes)
 
