@@ -112,7 +112,7 @@ const Register = () => {
             required
           />
           <label htmlFor="image">
-            <img src="/assets/addImage.png" alt="add profile photo" />
+            <img src="/assets/addImage.png" alt="add profile" />
             <p>Upload Profile Photo</p>
           </label>{" "}
 

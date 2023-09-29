@@ -1,28 +1,37 @@
 @import "../styles/variables.scss";
 
 .listings {
-  padding: 50px 180px;
+  padding: 0 80px 100px;
+  display: flex;
+  gap: 30px;
 
-  .category-list {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 60px;
+  .listing-card {  
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
 
-    .category {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: $darkgrey;
+    &:hover {
+      @include shadow ;
+    }
 
-      &_icon {
-        font-size: 30px;
-      }
+    img {
+      width: 300px;
+      height: 270px;
+      margin-bottom: 10px;
+      border-radius: 10px;
 
-      p {
-        font-size: 18px;
-        font-weight: 700;
-      }
+      // &:hover {
+      //   @include shadow ;
+      // }
+    }
+  
+    p {
+      font-size: 18px;
+    }
+  
+    span {
+      font-weight: 700;
+      font-size: 20px;
     }
   }
 }

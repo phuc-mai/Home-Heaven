@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { GoogleLogin } from "react-google-login";
 
-import { setLogin } from "../redux/userRedux";
+import { setLogin } from "../redux/state";
 
 const Login = () => {
   const [email, setEmail] = useState("");

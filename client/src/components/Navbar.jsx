@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "../styles/Navbar.scss";
 import variables from "../styles/variables.scss";
-import { setLogout } from "../redux/userRedux";
+import { setLogout } from "../redux/state";
 
 const Navbar = () => {
   const [dropdownMenu, setDropdownMenu] = useState(false);
@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <img src="/assets/logo.png" alt="logo" href="/" />
+      <a href="/" target="_blank"><img src="/assets/logo.png" alt="logo"/></a>
 
       <div className="navbar_search">
         <input placeholder="Search..." />
