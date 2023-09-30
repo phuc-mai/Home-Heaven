@@ -8,18 +8,22 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { StaticDatePicker } from "@mui/x-date-pickers/StaticDatePicker";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import Loader from "../components/Loader";
 
 const ListingDetails = () => {
   const { listingId } = useParams()
-  const [listing, setListing] = useState()
+  const [listing, setListing] = useState({})
+  const [loading, setLoading] = useState(true);
 
   const getListing = async () => {
+
     try {
       const response = await fetch(`http://localhost:3001/properties/${listingId}`, {
         method: "GET",
       })
       const data = await response.json()
       setListing(data)
+      setLoading(false)
     } 
       catch (error) {
         console.log("Fetch Listing failed", error.message);
@@ -30,13 +34,12 @@ const ListingDetails = () => {
     getListing();
   }, []);
 
-  console.log(listingId, listing)
 
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
 
-  return (
+  return loading ? <Loader/>: (
     <>
       <Navbar />
       <div className="listing-details">
