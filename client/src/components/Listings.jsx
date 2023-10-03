@@ -1,13 +1,15 @@
 import "../styles/Listings.scss";
 import { setListings } from "../redux/state";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
+import ListingCard from "./ListingCard";
 
 const Listings = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  const [loading, setLoading] = useState(true);
 
   const listings = useSelector((state) => state.listings);
 
@@ -19,6 +21,7 @@ const Listings = ({ userId, isProfile = false }) => {
 
       const data = await response.json();
       dispatch(setListings({ listings: data }));
+      setLoading(false);
     } catch (error) {
       console.log("Fetch all Listings failed", error.message);
     }
@@ -35,6 +38,7 @@ const Listings = ({ userId, isProfile = false }) => {
 
       const data = await response.json();
       dispatch(setListings({ listings: data }));
+      setLoading(false);
     } catch (error) {
       console.log("Fetch user Listings failed", error.message);
     }
@@ -48,7 +52,9 @@ const Listings = ({ userId, isProfile = false }) => {
     }
   }, []);
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="listings">
       {listings.map(
         ({
@@ -60,30 +66,19 @@ const Listings = ({ userId, isProfile = false }) => {
           category,
           type,
           price,
+          booking = false
         }) => (
-          <div
-            className="listing-card"
-            onClick={() => {
-              navigate(`/properties/${_id}`);
-              navigate(0);
-            }}
-          >
-            <img
-              src={`http://localhost:3001/${listingPhotosPaths[0].replace(
-                "public",
-                ""
-              )}`}
-              alt="listing"
-            />
-            <h3>
-              {city}, {province}, {country}
-            </h3>
-            <p>{JSON.parse(category).label}</p>
-            <p>{JSON.parse(type).name}</p>
-            <p>
-              <span>${price}</span> per night
-            </p>
-          </div>
+          <ListingCard
+            listingId={_id}
+            listingPhotosPaths={listingPhotosPaths}
+            city={city}
+            province={province}
+            country={country}
+            category={category}
+            type={type}
+            price={price}
+            booking={booking}
+          />
         )
       )}
     </div>

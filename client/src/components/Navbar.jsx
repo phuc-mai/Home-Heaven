@@ -1,6 +1,6 @@
 import { IconButton } from "@mui/material";
 import { Person, Search, Menu } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,11 +11,14 @@ import { setLogout } from "../redux/state";
 const Navbar = () => {
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   return (
     <div className="navbar">
-      <a href="/" target="_blank"><img src="/assets/logo.png" alt="logo"/></a>
+      <a href="/" target="_blank">
+        <img src="/assets/logo.png" alt="logo" />
+      </a>
 
       <div className="navbar_search">
         <input placeholder="Search..." />
@@ -36,7 +39,10 @@ const Navbar = () => {
             <Person sx={{ color: variables.darkgrey }} />
           ) : (
             <img
-              src={`http://localhost:3001/${user.profileImagePath.replace('public','')}`}
+              src={`http://localhost:3001/${user.profileImagePath.replace(
+                "public",
+                ""
+              )}`}
               alt="Profile"
               style={{ objectFit: "cover", borderRadius: "50%" }}
             />
@@ -52,10 +58,18 @@ const Navbar = () => {
 
         {dropdownMenu && user && (
           <div className="navbar_right_accountmenu">
-            <Link>Trip List</Link>
-            <Link>Wish List</Link>
+            <Link to={`/${user._id}/trips`}>Trip List</Link>
+            <Link to={`/${user._id}/wishlist`}>Wish List</Link>
             <Link>Property List</Link>
-            <Link onClick={() => dispatch(setLogout())}>Log Out</Link>
+            <Link to={`/${user._id}/reservations`}>Reservation List</Link>
+            <Link
+              onClick={() => {
+                dispatch(setLogout());
+                navigate("/login");
+              }}
+            >
+              Log Out
+            </Link>
           </div>
         )}
       </div>

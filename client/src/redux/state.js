@@ -20,9 +20,22 @@ export const userSlice = createSlice({
     setListings: (state, action) => {
       state.listings = action.payload.listings
     },
+    setPropertyList: (state, action) => {
+      state.user.propertyList = action.payload
+    },
+    setWishList: (state, action) => {
+      state.user.wishList = action.payload
+    },
+    setTripList: (state, action) => {
+      state.user.tripList = action.payload
+    },
+    setReservationList: (state, action) => {
+      state.user.reservationList = action.payload
+    },
+    
   }
 })
 
-export const { setLogin, setLogout, setListings } = userSlice.actions
+export const { setLogin, setLogout, setListings, setWishList, setTripList, setReservationList } = userSlice.actions
 
 export default userSlice.reducer

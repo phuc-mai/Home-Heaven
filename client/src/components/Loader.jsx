@@ -1,6 +1,4 @@
-// Loader.js
-import React from 'react';
-import '../styles/Loader.scss'; // Import the Sass stylesheet
+import '../styles/Loader.scss';
 
 const Loader = () => {
   return (

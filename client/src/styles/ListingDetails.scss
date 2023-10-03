@@ -1,12 +1,17 @@
 @import "./variables.scss";
 
 .listing-details {
-  padding: 40px 150px 120px;
+  padding: 40px 130px 120px;
 
-  img {
-    max-width: 600px;
-    height: 300px;
+  .photos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     margin: 20px 0;
+
+    img {
+      max-width: 280px;
+    }
   }
 
   hr {
@@ -25,28 +30,47 @@
     }
   }
 
-  .amenities {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 30px 0;
-    max-width: 700px;
-
-    .facility {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 15px;
-
-      &_icon {
-        font-size: 30px;
-      }
-    }
+  p {
+    max-width: 800px;
   }
 
-  .calendar {
+  .booking {
     display: flex;
-    gap: 100px;
+    justify-content: space-between;
+
+    .amenities {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 100px;
+      margin: 30px 0;
+      max-width: 700px;
+
+      .facility {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+
+        &_icon {
+          font-size: 30px;
+        }
+      }
+    }
+
+    .date-range-calendar {
+      margin: 30px 0;
+
+      h2 {
+        margin-bottom: 10px;
+      }
+
+      .button {
+        @include buttonStyle;
+        width: 100%;
+        margin-top: 30px;
+      }
+    }
   }
 }

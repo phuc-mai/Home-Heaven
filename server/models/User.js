@@ -35,6 +35,10 @@ const UserSchema = new mongoose.Schema(
       type: Array,
       default: [],
     },
+    reservationList: {
+      type: Array,
+      default: [],
+    }
   },
   { timestamps: true }
 );

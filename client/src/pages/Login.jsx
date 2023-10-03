@@ -23,7 +23,7 @@ const Login = () => {
           "Content-Type": "application/json",
         },
         /* Pass email & password input to body as in server: const { email, password } = req.body */
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password }), // Convert the data object to a JSON string
       });
 
       /* Get data after fetching */
