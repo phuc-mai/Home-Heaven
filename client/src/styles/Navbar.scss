@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 .navbar {
-  padding: 20px 60px;
+  padding: 10px 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -80,6 +80,7 @@
       border: 1px solid $lightgrey;
       border-radius: 20px;
       @include shadow;
+      z-index: 9999;
 
       a {
         width: 100%;

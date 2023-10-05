@@ -2,7 +2,7 @@ import "../styles/Login.scss";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { GoogleLogin } from "react-google-login";
+// import { GoogleLogin } from "react-google-login";
 
 import { setLogin } from "../redux/state";
 
@@ -44,38 +44,39 @@ const Login = () => {
     }
   };
 
-  const responseGoogle = async (response) => {
-    if (response.profileObj) {
-      const { googleId, email, name, imageUrl } = response.profileObj;
+  /* GOOGLE LOGIN */
+  // const responseGoogle = async (response) => {
+  //   if (response.profileObj) {
+  //     const { googleId, email, name, imageUrl } = response.profileObj;
 
-      try {
-        const response = await fetch("http://localhost:3001/auth/googlelogin", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          /* Pass email & password input to body as in server: const { email, password } = req.body */
-          body: JSON.stringify({ googleId, email, name, imageUrl }),
-        });
+  //     try {
+  //       const response = await fetch("http://localhost:3001/auth/googlelogin", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         /* Pass email & password input to body as in server: const { email, password } = req.body */
+  //         body: JSON.stringify({ googleId, email, name, imageUrl }),
+  //       });
 
-        /* Get data after fetching */
-        const loggedIn = await response.json();
-        /* reponse.json() = res.status(200).json({ user: userData }) as in server*/
+  //       /* Get data after fetching */
+  //       const loggedIn = await response.json();
+  //       /* reponse.json() = res.status(200).json({ user: userData }) as in server*/
 
-        if (loggedIn) {
-          dispatch(
-            setLogin({
-              user: loggedIn.user,
-              token: loggedIn.token,
-            })
-          );
-          navigate("/");
-        }
-      } catch (error) {
-        console.log("Login failed", error.message);
-      }
-    }
-  };
+  //       if (loggedIn) {
+  //         dispatch(
+  //           setLogin({
+  //             user: loggedIn.user,
+  //             token: loggedIn.token,
+  //           })
+  //         );
+  //         navigate("/");
+  //       }
+  //     } catch (error) {
+  //       console.log("Login failed", error.message);
+  //     }
+  //   }
+  // };
 
   return (
     <div className="login">
@@ -97,7 +98,7 @@ const Login = () => {
           />
           <button type="submit">LOG IN</button>
         </form>
-        <div className="login_content_google">
+        {/* <div className="login_content_google">
           <GoogleLogin
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             buttonText="Log In with Google"
@@ -105,7 +106,7 @@ const Login = () => {
             onFailure={responseGoogle}
             cookiePolicy={"single_host_origin"}
           />
-        </div>
+        </div> */}
         <a href="/register">Don't have an account? Sign In Here</a>
         <p>DEMO Account</p>
         <p>Email - "phucmai@email.com" & Pass - "phucmai"</p>

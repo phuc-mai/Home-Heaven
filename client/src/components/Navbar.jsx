@@ -1,6 +1,6 @@
 import { IconButton } from "@mui/material";
 import { Person, Search, Menu } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -12,7 +12,6 @@ const Navbar = () => {
   const [dropdownMenu, setDropdownMenu] = useState(false);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
 
   return (
     <div className="navbar">
@@ -28,7 +27,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar_right">
-        <a href="/create-listing">Become A Host</a>
+        {user ? <a href="/create-listing">Become A Host</a> : <a href="/login">Become A Host</a> }
 
         <button
           className="navbar_right_account"
@@ -60,12 +59,12 @@ const Navbar = () => {
           <div className="navbar_right_accountmenu">
             <Link to={`/${user._id}/trips`}>Trip List</Link>
             <Link to={`/${user._id}/wishlist`}>Wish List</Link>
-            <Link>Property List</Link>
+            <Link to={`/${user._id}/properties`}>Property List</Link>
             <Link to={`/${user._id}/reservations`}>Reservation List</Link>
             <Link
+              to="/login"
               onClick={() => {
                 dispatch(setLogout());
-                navigate("/login");
               }}
             >
               Log Out

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const multer = require("multer");
 
 const User = require("../models/User");
-const Listing = require("../models/Listing")
+const Listing = require("../models/Listing");
 
 /* Configure Multer for FILE UPLOADS */
 const storage = multer.diskStorage({
@@ -10,13 +10,13 @@ const storage = multer.diskStorage({
     cb(null, "public/uploads/"); // Store uploaded files in the 'uploads' folder
   },
   filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname); // Use the original file name
+    cb(null, Date.now() + "-" + file.originalname); // Use the original file name
   },
 });
 
 const upload = multer({ storage });
 
-/* CREATE */
+/* CREATE LISTING */
 router.post("/create", upload.array("listingPhotos"), async (req, res) => {
   try {
     /* Take information from the form */
@@ -83,20 +83,28 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
     res
       .status(409)
       .json({ message: "Fail to create Listing", error: err.message });
-    console.log(err)
+    console.log(err);
   }
 });
 
-/* READ */
+/* GET LISTINGS */
 router.get("/", async (req, res) => {
+  const qCategory= req.query.category
+
   try {
-    const allListings = await Listing.find();
-    res.status(202).json(allListings);
+    let listings
+    if (qCategory) {
+      listings = await Listing.find({ category: qCategory })
+    } else {
+      listings = await Listing.find()
+    }
+    res.status(202).json(listings);
   } catch (err) {
     res.status(404).json({ error: err.message });
   }
 });
 
+/* GET USER'S LISTINGS */
 router.get("/:userId/listings", async (req, res) => {
   try {
     const { userId } = req.params;
@@ -107,6 +115,7 @@ router.get("/:userId/listings", async (req, res) => {
   }
 });
 
+/* GET LISTING DETAILS */
 router.get("/:listingId", async (req, res) => {
   try {
     const { listingId } = req.params;
@@ -116,5 +125,6 @@ router.get("/:listingId", async (req, res) => {
     res.status(404).json({ error: err.message });
   }
 });
+
 
 module.exports = router;

@@ -1,6 +1,7 @@
 import "../styles/CreateListing.scss";
 import variables from "../styles/variables.scss";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { facilities, categories, types } from "../data";
 
 import { useState } from "react";
@@ -14,8 +15,8 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 const CreateListing = () => {
   const navigate = useNavigate();
 
-  const [category, setCategory] = useState({});
-  const [type, setType] = useState({});
+  const [category, setCategory] = useState("");
+  const [type, setType] = useState("");
 
   const [amenities, setAmenities] = useState([]);
 
@@ -102,8 +103,8 @@ const CreateListing = () => {
       /* Create a new FormData object to handle file uploads */
       const formData = new FormData();
       formData.append("userId", _id);
-      formData.append("category", JSON.stringify(category));
-      formData.append("type", JSON.stringify(type));
+      formData.append("category", category);
+      formData.append("type", type);
       formData.append("streetAddress", formLocation.streetAddress);
       formData.append("aptSuite", formLocation.aptSuite);
       formData.append("city", formLocation.city);
@@ -152,10 +153,10 @@ const CreateListing = () => {
             <div className="category-list">
               {categories?.map((item, index) => (
                 <div
-                  className={`category ${category === item ? "selected" : ""}`}
+                  className={`category ${category === item.label ? "selected" : ""}`}
                   key={index}
                   onClick={() => {
-                    setCategory(item);
+                    setCategory(item.label);
                   }}
                 >
                   <div className="category_icon">{item.icon}</div>
@@ -168,10 +169,10 @@ const CreateListing = () => {
             <div className="type-list">
               {types?.map((item, index) => (
                 <div
-                  className={`type ${type === item ? "selected" : ""}`}
+                  className={`type ${type === item.name ? "selected" : ""}`}
                   key={index}
                   onClick={() => {
-                    setType(item);
+                    setType(item.name);
                   }}
                 >
                   <div className="type_text">
@@ -501,6 +502,8 @@ const CreateListing = () => {
           </button>
         </form>
       </div>
+
+      <Footer />
     </>
   );
 };

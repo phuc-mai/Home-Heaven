@@ -8,11 +8,11 @@ const ListingSchema = new mongoose.Schema(
     },
     firstName: String,
     category: {
-      type: Object,
+      type: String,
       required: true,
     },
     type: {
-      type: Object,
+      type: String,
       required: true,
     },
     streetAddress: {
@@ -26,7 +26,6 @@ const ListingSchema = new mongoose.Schema(
     },
     province: {
       type: String,
-      required: true,
     },
     country: {
       type: String,

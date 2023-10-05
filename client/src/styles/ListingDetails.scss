@@ -3,6 +3,23 @@
 .listing-details {
   padding: 40px 130px 120px;
 
+  .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .save {
+      display: flex;
+      gap: 10px;
+      cursor: pointer;
+
+      p {
+        font-size: 20px;
+        font-weight: 700;
+      }
+    }
+  }
+
   .photos {
     display: flex;
     flex-wrap: wrap;
@@ -32,6 +49,7 @@
 
   p {
     max-width: 800px;
+    margin-top: 20px;
   }
 
   .booking {

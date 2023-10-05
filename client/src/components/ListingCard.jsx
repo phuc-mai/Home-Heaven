@@ -63,77 +63,77 @@ const ListingCard = ({
   };
 
   return (
-    <div className="listing">
-      <div
-        className="listing-card"
-        onClick={() => {
-          navigate(`/properties/${listingId}`);
-        }}
-      >
-        <div className="slider-container">
-          <div className="slider">
-            {listingPhotosPaths?.map((photo, index) => (
+    <div
+      className="listing-card"
+      onClick={() => {
+        navigate(`/properties/${listingId}`);
+      }}
+    >
+      <div className="slider-container">
+        <div
+          className="slider"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {listingPhotosPaths?.map((photo, index) => (
+            <div key={index} className="slide">
+              <img
+                src={`http://localhost:3001/${photo.replace("public", "")}`}
+                alt={`photo ${index + 1}`}
+              />
               <div
-                key={index}
-                className={`slide ${index === currentIndex ? "active" : ""}`}
+                className="prev-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToPrevSlide(e);
+                }}
               >
-                <img
-                  src={`http://localhost:3001/${photo.replace(
-            "public",
-            ""
-          )}`}
-                  alt={`photo ${index + 1}`}
-                />
+                <ArrowBackIosNew sx={{ fontSize: "15px" }} />
               </div>
-            ))}
-
-            <div
-              className="prev-button"
-              onClick={(e) => {
-                e.stopPropagation();
-                goToPrevSlide(e);
-              }}
-            >
-              <ArrowBackIosNew sx={{ fontSize: "15px" }} />
+              <div
+                className="next-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNextSlide(e);
+                }}
+              >
+                <ArrowForwardIos sx={{ fontSize: "15px" }} />
+              </div>
             </div>
-            <div
-              className="next-button"
-              onClick={(e) => {
-                e.stopPropagation();
-                goToNextSlide(e);
-              }}
-            >
-              <ArrowForwardIos sx={{ fontSize: "15px" }} />
-            </div>
-          </div>
+          ))}
         </div>
-
-        <h3>
-          {city}, {province}, {country}
-        </h3>
-        <p>{category && JSON.parse(category).label}</p>
-
-        {!booking ? (
-          <>
-            <p>{JSON.parse(type).name}</p>
-            <p>
-              <span>${price}</span> per night
-            </p>
-          </>
-        ) : (
-          <>
-            <p>
-              {startDate} - {endDate}
-            </p>
-
-            <p>
-              <span>${totalPrice}</span> total
-            </p>
-          </>
-        )}
       </div>
 
-      <div className="favorite" onClick={() => patchWishList()}>
+      <h3>
+        {city}, {province}, {country}
+      </h3>
+      <p>{category}</p>
+
+      {!booking ? (
+        <>
+          <p>{type}</p>
+          <p>
+            <span>${price}</span> per night
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            {startDate} - {endDate}
+          </p>
+
+          <p>
+            <span>${totalPrice}</span> total
+          </p>
+        </>
+      )}
+
+      <div
+        className="favorite"
+        onClick={(e) => {
+          patchWishList();
+          e.stopPropagation();
+        }}
+      >
         {isLiked ? (
           <Favorite sx={{ color: variables.pinkred }} />
         ) : (

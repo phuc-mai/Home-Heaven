@@ -1,84 +1,81 @@
 @import "./variables.scss";
 
-.listing {
+.listing-card {
   position: relative;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
 
-  .listing-card {
-    cursor: pointer;
-    padding: 10px;
+  &:hover {
+    @include shadow;
+  }
+
+  .slider-container {
+    width: 300px;
+    overflow: hidden;
     border-radius: 10px;
+    margin-bottom: 10px;
 
-    &:hover {
-      @include shadow;
-    }
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease;
 
-    .slider-container {
-      position: relative;
-      width: 300px;
-      overflow: hidden;
-      border-radius: 10px;
-      margin-bottom: 10px;
-
-      .slider {
+      .slide {
+        position: relative;
+        flex: 0 0 100%;
+        width: 100%;
+        height: 270px;
         display: flex;
-        transition: transform 0.5s ease;
+        align-items: center;
 
-        .slide {
-          flex: 0 0 100%;
+        img {
           width: 100%;
-          height: 270px;
-          display: flex;
-          align-items: center;
-
-          img {
-            width: 100%;
-            height: 100%;
-            filter: brightness(85%);
-          }
-        }
-
-        .active {
-          transform: translateX(0);
+          height: 100%;
+          filter: brightness(85%);
         }
 
         .prev-button,
-          .next-button {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 6px;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: rgba(255, 255, 255, 0.7);
-            z-index: 9999;
+        .next-button {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          padding: 6px;
+          border-radius: 50%;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(255, 255, 255, 0.7);
+          z-index: 9999;
 
-            &:hover {
-              background-color: white;
-            }
+          &:hover {
+            background-color: white;
           }
+        }
 
-          .prev-button {
-            left: 10px;
-          }
+        .prev-button {
+          left: 10px;
+        }
 
-          .next-button {
-            right: 10px;
-          }
+        .next-button {
+          right: 10px;
+        }
       }
     }
+  }
 
-    p {
-      font-size: 18px;
-    }
+  h3 {
+    font-size: 18px;
+  }
 
-    span {
-      font-weight: 700;
-      font-size: 20px;
-    }
+  p {
+    font-size: 16px;
+  }
+
+  span {
+    font-weight: 700;
+    font-size: 18px;
   }
 
   .favorite {

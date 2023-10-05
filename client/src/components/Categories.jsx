@@ -1,5 +1,6 @@
 import "../styles/Categories.scss";
 import { categories } from "../data";
+import { Link } from "react-router-dom";
 
 const Categories = () => {
   return (
@@ -12,14 +13,16 @@ const Categories = () => {
       </p>
       <div className="categories_list">
         {categories?.slice(0, 7).map((category, index) => (
-          <div className="category" key={index}>
-            <img src={category.img} alt={category.label} />
-            <div className="overlay"></div>
-            <div className="category_text">
-              <div className="category_text_icon">{category.icon}</div>
-              <p>{category.label}</p>
+          <Link to={`/properties/category/${category.label}`}>
+            <div className="category" key={index}>
+              <img src={category.img} alt={category.label} />
+              <div className="overlay"></div>
+              <div className="category_text">
+                <div className="category_text_icon">{category.icon}</div>
+                <p>{category.label}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

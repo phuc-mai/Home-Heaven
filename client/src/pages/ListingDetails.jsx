@@ -1,17 +1,22 @@
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { facilities } from "../data";
 import "../styles/ListingDetails.scss";
+import variables from "../styles/variables.scss";
 import Loader from "../components/Loader";
+import { Favorite, FavoriteBorder } from "@mui/icons-material";
+import { setWishList } from "../redux/state";
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ListingDetails = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [loading, setLoading] = useState(true);
 
   const { listingId } = useParams();
@@ -70,6 +75,26 @@ const ListingDetails = () => {
     }
   }, [listing]);
 
+  /* ADD TO WISHLIST */
+  const user = useSelector((state) => state.user);
+  const wishList = user?.wishList || [];
+
+  const isLiked = wishList.find((item) => item?._id === listingId);
+
+  const patchWishList = async () => {
+    const response = await fetch(
+      `http://localhost:3001/users/${user._id}/${listingId}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    dispatch(setWishList(data.wishlist));
+  };
+
   /* BOOKING CALENDAR */
   const [dateRange, setDateRange] = useState([
     {
@@ -98,7 +123,7 @@ const ListingDetails = () => {
         listingId,
         hostId: listing.userId,
         startDate: dateRange[0].startDate.toDateString(),
-        endDate: dateRange[0].startDate.toDateString(),
+        endDate: dateRange[0].endDate.toDateString(),
         totalPrice: listing.price * dayCount,
       };
 
@@ -123,7 +148,18 @@ const ListingDetails = () => {
     <>
       <Navbar />
       <div className="listing-details">
-        <h1>{listing.title}</h1>
+        <div className="title">
+          <h1>{listing.title}</h1>
+          <div className="save" onClick={() => patchWishList()}>
+            {isLiked ? (
+              <Favorite sx={{ color: variables.pinkred }} />
+            ) : (
+              <FavoriteBorder />
+            )}
+            <p>Save</p>
+          </div>
+        </div>
+
         <div className="photos">
           {listing.listingPhotosPaths?.map((item) => (
             <img
@@ -133,7 +169,7 @@ const ListingDetails = () => {
           ))}
         </div>
         <h2>
-          {JSON.parse(listing.type).name} in {listing.city}, {listing.province},{" "}
+          {listing.type} in {listing.city}, {listing.province},{" "}
           {listing.country}
         </h2>
         <p>
@@ -154,7 +190,11 @@ const ListingDetails = () => {
           </h3>
         </div>
         <hr />
+        <h3>Description</h3>
         <p>{listing.description}</p>
+        <hr />
+        <h3>{listing.highlight}</h3>
+        <p>{listing.highlightDesc}</p>
         <hr />
         <div className="booking">
           <div>
@@ -198,6 +238,7 @@ const ListingDetails = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

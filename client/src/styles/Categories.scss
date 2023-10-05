@@ -27,6 +27,10 @@
     justify-content: center;
     gap: 20px;
 
+    a {
+      text-decoration: none;
+    }
+
     .category {
       position: relative;
       display: flex;

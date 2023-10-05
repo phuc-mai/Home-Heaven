@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import "../styles/ListingCard.scss";
-import "../styles/Wishlist.scss"
 import ListingCard from "../components/ListingCard";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Wishlist = () => {
   const wishList = useSelector((state) => state.user.wishList);
@@ -10,9 +10,8 @@ const Wishlist = () => {
   return (
     <>
       <Navbar />
-      <div className="wishlist">
-        <h1>Your Wish List</h1>
-        <div className="favorite">
+        <h1 style={{ margin: "40px 100px" }}>Your Wish List</h1>
+        <div style={{ margin: "0 100px 120px", display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "25px" }}>
           {wishList.map(
             ({
               _id,
@@ -39,7 +38,7 @@ const Wishlist = () => {
             )
           )}
         </div>
-      </div>
+        <Footer />
     </>
   );
 };
