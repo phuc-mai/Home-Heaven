@@ -1,8 +1,13 @@
 @import "../styles/variables.scss";
+@import "../styles/breakpoints.scss";
 
 .create-listing {
   background-color: $lightgrey;
   padding: 40px 60px 120px;
+
+  @include mm {
+    padding: 40px 20px;
+  }
 
   h1 {
     color: $blue;
@@ -13,6 +18,10 @@
     padding: 30px 40px;
     border-radius: 20px;
     margin-top: 40px;
+
+    @include sm {
+      padding: 30px 20px;
+    }
 
     h2 {
       color: $pinkred;
@@ -31,6 +40,15 @@
       display: flex;
       flex-wrap: wrap;
       gap: 20px;
+      padding: 0 20px;
+
+      @include lg {
+        padding: 0 20px;
+      }
+
+      @include md {
+        padding: 0;
+      }
 
       .category {
         display: flex;
@@ -116,6 +134,12 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 40px;
+
+      @include ml {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
     }
 
     .location {
@@ -169,6 +193,10 @@
     padding: 30px 40px;
     border-radius: 20px;
     margin-top: 40px;
+
+    @include sm {
+      padding: 30px 20px;
+    }
 
     h2 {
       color: $pinkred;
@@ -266,6 +294,7 @@
 
         p {
           font-weight: 600;
+          text-align: center;
         }
       }
 
@@ -277,6 +306,14 @@
       .alone {
         padding: 40px 100px;
         border-radius: 10px;
+
+        @include mm {
+          padding: 40px 80px;
+        }
+
+        @include sm {
+          padding: 40px 30px;
+        }
       }
     }
 
@@ -309,6 +346,18 @@
         font-size: 16px;
         font-weight: 600;
         width: 600px;
+
+        @include ml {
+          width: 450px
+        }
+
+        @include md {
+          width: 350px
+        }
+
+        @include sm {
+          width: 280px
+        }
 
         &:focus {
           outline: none;

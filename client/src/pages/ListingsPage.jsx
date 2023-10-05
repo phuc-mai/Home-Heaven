@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ListingCard from "../components/ListingCard";
 import Loader from "../components/Loader";
+import "../styles/List.scss";
 
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -45,42 +46,34 @@ const ListingsPage = () => {
         <Loader />
       ) : (
         <>
-        <h1 style={{ margin: "40px 100px" }}>{category}</h1>
-        <div
-          style={{
-            padding: "0 100px 120px",
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            gap: "25px",
-          }}
-        >
-          {listings.map(
-            ({
-              _id,
-              listingPhotosPaths,
-              city,
-              province,
-              country,
-              category,
-              type,
-              price,
-              booking = false,
-            }) => (
-              <ListingCard
-                listingId={_id}
-                listingPhotosPaths={listingPhotosPaths}
-                city={city}
-                province={province}
-                country={country}
-                category={category}
-                type={type}
-                price={price}
-                booking={booking}
-              />
-            )
-          )}
-        </div>
+          <h1 className="title-list">{category}</h1>
+          <div className="list">
+            {listings.map(
+              ({
+                _id,
+                listingPhotosPaths,
+                city,
+                province,
+                country,
+                category,
+                type,
+                price,
+                booking = false,
+              }) => (
+                <ListingCard
+                  listingId={_id}
+                  listingPhotosPaths={listingPhotosPaths}
+                  city={city}
+                  province={province}
+                  country={country}
+                  category={category}
+                  type={type}
+                  price={price}
+                  booking={booking}
+                />
+              )
+            )}
+          </div>
         </>
       )}
       <Footer />

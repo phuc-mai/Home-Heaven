@@ -27,7 +27,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar_right">
-        {user ? <a href="/create-listing">Become A Host</a> : <a href="/login">Become A Host</a> }
+        {user ? <a href="/create-listing" className="host">Become A Host</a> : <a href="/login">Become A Host</a> }
 
         <button
           className="navbar_right_account"
@@ -61,6 +61,8 @@ const Navbar = () => {
             <Link to={`/${user._id}/wishlist`}>Wish List</Link>
             <Link to={`/${user._id}/properties`}>Property List</Link>
             <Link to={`/${user._id}/reservations`}>Reservation List</Link>
+            <Link to="/create-listing">Become A Host</Link>
+
             <Link
               to="/login"
               onClick={() => {

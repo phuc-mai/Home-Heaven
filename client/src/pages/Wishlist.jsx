@@ -3,6 +3,7 @@ import "../styles/ListingCard.scss";
 import ListingCard from "../components/ListingCard";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import "../styles/List.scss"
 
 const Wishlist = () => {
   const wishList = useSelector((state) => state.user.wishList);
@@ -10,8 +11,8 @@ const Wishlist = () => {
   return (
     <>
       <Navbar />
-        <h1 style={{ margin: "40px 100px" }}>Your Wish List</h1>
-        <div style={{ margin: "0 100px 120px", display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "25px" }}>
+        <h1 className="title-list">Your Wish List</h1>
+        <div className="list">
           {wishList.map(
             ({
               _id,

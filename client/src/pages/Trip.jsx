@@ -6,6 +6,7 @@ import ListingCard from "../components/ListingCard";
 import Loader from "../components/Loader";
 import { setTripList } from "../redux/state";
 import Footer from "../components/Footer";
+import "../styles/List.scss"
 
 const Trip = () => {
   const dispatch = useDispatch();
@@ -41,8 +42,8 @@ const Trip = () => {
   ) : (
     <>
       <Navbar />
-      <h1 style={{ margin: "40px 100px" }}>Your Trip List</h1>
-      <div style={{ margin: "0 100px 120px", display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "25px" }}>
+      <h1 className="title-list">Your Trip List</h1>
+      <div className="list">
         {tripList?.map(
           ({
             _id,

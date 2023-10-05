@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import "./breakpoints.scss";
 
 .navbar {
   padding: 10px 60px;
@@ -6,6 +7,10 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
+
+  @include sm {
+    padding: 10px 20px;
+  }
 
   img {
     width: 100px;
@@ -29,6 +34,10 @@
     &:hover {
       @include shadow;
     }
+
+    @include lg {
+      display: none;
+    }
   }
 
   &_right {
@@ -36,7 +45,7 @@
     align-items: center;
     gap: 20px;
 
-    a {
+    .host {
       text-decoration: none;
       color: $blue;
       font-weight: 700;
@@ -44,6 +53,10 @@
 
       &:hover {
         color: $pinkred;
+      }
+
+      @include sm {
+        display: none;
       }
     }
 
@@ -81,6 +94,10 @@
       border-radius: 20px;
       @include shadow;
       z-index: 9999;
+
+      @include sm {
+        right: 20px;
+      }
 
       a {
         width: 100%;
