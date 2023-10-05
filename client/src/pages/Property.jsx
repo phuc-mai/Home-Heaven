@@ -18,7 +18,7 @@ const Property = () => {
   const getProperties = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/properties/${user._id}/listings`,
+        `https://homeheavenserver.phucmai.com/properties/${user._id}/listings`,
         {
           method: "GET",
         }

@@ -18,7 +18,7 @@ const Trip = () => {
   const getTrips = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/bookings/${user._id}/trips`,
+        `https://homeheavenserver.phucmai.com/bookings/${user._id}/trips`,
         {
           method: "GET",
         }

@@ -127,7 +127,7 @@ const CreateListing = () => {
       });
 
       /* Send a POST request to your server to add the Listing */
-      const response = await fetch("http://localhost:3001/properties/create", {
+      const response = await fetch("https://homeheavenserver.phucmai.com/properties/create", {
         method: "POST",
         body: formData,
       });

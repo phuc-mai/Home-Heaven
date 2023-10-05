@@ -42,7 +42,7 @@ const Register = () => {
           form_data.append(key, formData[key]);
       }
 
-      const response = await fetch("http://localhost:3001/auth/register", {
+      const response = await fetch("https://homeheavenserver.phucmai.com/auth/register", {
         method: "POST",
         body: form_data,
       });

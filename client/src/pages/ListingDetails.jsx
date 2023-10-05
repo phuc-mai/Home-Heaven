@@ -26,7 +26,7 @@ const ListingDetails = () => {
   const getListing = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/properties/${listingId}`,
+        `https://homeheavenserver.phucmai.com/properties/${listingId}`,
         {
           method: "GET",
         }
@@ -41,7 +41,7 @@ const ListingDetails = () => {
 
   // async function getHost(hostId) {
   //   try {
-  //     const response = await fetch(`http://localhost:3001/users/${hostId}`, {
+  //     const response = await fetch(`https://homeheavenserver.phucmai.com/users/${hostId}`, {
   //       method: "GET",
   //     });
   //     const data = await response.json();
@@ -60,7 +60,7 @@ const ListingDetails = () => {
     const getHost = async () => {
       const hostId = listing.userId;
       try {
-        const response = await fetch(`http://localhost:3001/users/${hostId}`, {
+        const response = await fetch(`https://homeheavenserver.phucmai.com/users/${hostId}`, {
           method: "GET",
         });
         const data = await response.json();
@@ -83,7 +83,7 @@ const ListingDetails = () => {
 
   const patchWishList = async () => {
     const response = await fetch(
-      `http://localhost:3001/users/${user._id}/${listingId}`,
+      `https://homeheavenserver.phucmai.com/users/${user._id}/${listingId}`,
       {
         method: "PATCH",
         headers: {
@@ -114,7 +114,7 @@ const ListingDetails = () => {
   const dayCount = Math.round((end - start) / (1000 * 60 * 60 * 24)); // Calculate the difference in days
 
   /* SUBMIT BOOKING */
-  const customerId = useSelector((state) => state.user._id);
+  const customerId = useSelector((state) => state?.user?._id);
 
   const handleSubmit = async () => {
     try {
@@ -127,7 +127,7 @@ const ListingDetails = () => {
         totalPrice: listing.price * dayCount,
       };
 
-      const response = await fetch("http://localhost:3001/bookings/create", {
+      const response = await fetch("https://homeheavenserver.phucmai.com/bookings/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -163,7 +163,7 @@ const ListingDetails = () => {
         <div className="photos">
           {listing.listingPhotosPaths?.map((item) => (
             <img
-              src={`http://localhost:3001/${item.replace("public", "")}`}
+              src={`https://homeheavenserver.phucmai.com/${item.replace("public", "")}`}
               alt="listing"
             />
           ))}
@@ -179,7 +179,7 @@ const ListingDetails = () => {
         <hr />
         <div className="profile">
           <img
-            src={`http://localhost:3001/${host.profileImagePath.replace(
+            src={`https://homeheavenserver.phucmai.com/${host.profileImagePath.replace(
               "public",
               ""
             )}`}

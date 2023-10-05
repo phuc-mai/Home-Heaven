@@ -27,7 +27,7 @@ const Navbar = () => {
       </div>
 
       <div className="navbar_right">
-        {user ? <a href="/create-listing" className="host">Become A Host</a> : <a href="/login">Become A Host</a> }
+        {user ? <a href="/create-listing" className="host">Become A Host</a> : <a href="/login" className="host">Become A Host</a> }
 
         <button
           className="navbar_right_account"
@@ -38,7 +38,7 @@ const Navbar = () => {
             <Person sx={{ color: variables.darkgrey }} />
           ) : (
             <img
-              src={`http://localhost:3001/${user.profileImagePath.replace(
+              src={`https://homeheavenserver.phucmai.com/${user.profileImagePath.replace(
                 "public",
                 ""
               )}`}

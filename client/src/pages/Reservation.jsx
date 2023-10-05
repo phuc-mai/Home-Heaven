@@ -18,7 +18,7 @@ const Reservation = () => {
   const getReservations = async () => {
     try {
       const response = await fetch(
-        `http://localhost:3001/bookings/${user._id}/reservations`,
+        `https://homeheavenserver.phucmai.com/bookings/${user._id}/reservations`,
         {
           method: "GET",
         }

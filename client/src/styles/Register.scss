@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import "./breakpoints.scss";
 
 .register {
   width: 100vw;
@@ -14,10 +15,18 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 30%;
+    width: 40%;
     padding: 40px;
     background-color: rgba(0, 0, 0, 0.8);
     border-radius: 20px;
+
+    @include lg {
+      width: 60%
+    }
+
+    @include mm {
+      width: 80%
+    }
 
     &_form {
       display: flex;
