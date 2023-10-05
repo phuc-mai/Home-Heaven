@@ -40,7 +40,7 @@ const Property = () => {
   ) : (
     <>
       <Navbar />
-      <h1 style={{ margin: "40px 100px" }}>Your Reservation List</h1>
+      <h1 style={{ margin: "40px 100px" }}>Your Property List</h1>
       <div style={{ margin: "0 100px 120px", display: "flex", justifyContent: "center", flexWrap: "wrap", gap: "25px" }}>
         {propertyList?.map(
           ({

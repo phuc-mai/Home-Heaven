@@ -133,7 +133,7 @@ const CreateListing = () => {
       });
 
       if (response.ok) {
-        navigate("/");
+        navigate(`/${_id}/properties`);
       }
     } catch (error) {
       console.log("Publish Listing failed", error.message);

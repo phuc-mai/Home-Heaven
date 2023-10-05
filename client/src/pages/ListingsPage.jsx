@@ -44,9 +44,11 @@ const ListingsPage = () => {
       {loading ? (
         <Loader />
       ) : (
+        <>
+        <h1 style={{ margin: "40px 100px" }}>{category}</h1>
         <div
           style={{
-            padding: "80px 100px",
+            padding: "0 100px 120px",
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
@@ -79,6 +81,7 @@ const ListingsPage = () => {
             )
           )}
         </div>
+        </>
       )}
       <Footer />
     </>
