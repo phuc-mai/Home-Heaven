@@ -12,7 +12,7 @@ const Categories = () => {
         home, and create unforgettable memories in your dream destination.
       </p>
       <div className="categories_list">
-        {categories?.slice(0, 7).map((category, index) => (
+        {categories?.slice(1, 7).map((category, index) => (
           <Link to={`/properties/category/${category.label}`}>
             <div className="category" key={index}>
               <img src={category.img} alt={category.label} />

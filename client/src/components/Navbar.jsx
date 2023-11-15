@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar">
-      <a href="/" target="_blank">
+      <a href="/">
         <img src="/assets/logo.png" alt="logo" />
       </a>
 

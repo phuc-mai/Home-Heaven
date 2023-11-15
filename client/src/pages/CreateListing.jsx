@@ -53,7 +53,7 @@ const CreateListing = () => {
   const [bedCount, setBedCount] = useState(1);
   const [bathroomCount, setBathroomCount] = useState(1);
 
-  /* UPLOAD & REMOVE PHOTOS */
+  /* UPLOAD, REMOVE & DRAG PHOTOS */
   const [photos, setPhotos] = useState([]);
 
   const handleUploadPhotos = (e) => {

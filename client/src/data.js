@@ -24,6 +24,7 @@ import {
   BiSolidFirstAid,
   BiWifi,
   BiSolidFridge,
+  BiWorld,
 } from "react-icons/bi";
 import { BsSnow, BsFillDoorOpenFill, BsPersonWorkspace } from "react-icons/bs";
 import { IoDiamond } from "react-icons/io5";
@@ -44,6 +45,10 @@ import {
 import { AiFillCar } from "react-icons/ai";
 
 export const categories = [
+  {
+    label: "All",
+    icon: <BiWorld />,
+  },
   {
     img: "assets/beach_cat.jpg",
     label: "Beachfront",

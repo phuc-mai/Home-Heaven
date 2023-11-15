@@ -18,7 +18,7 @@ const Listings = () => {
   const getFeedListings = async () => {
     try {
       const response = await fetch(
-        selectedCategory !== ""
+        selectedCategory !== "" && selectedCategory !== "All"
           ? `https://homeheavenserver.phucmai.com/properties?category=${selectedCategory}`
           : "https://homeheavenserver.phucmai.com/properties",
         {
