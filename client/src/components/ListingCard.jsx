@@ -13,6 +13,7 @@ import {
 
 const ListingCard = ({
   listingId,
+  userId,
   listingPhotosPaths,
   city,
   province,
@@ -35,17 +36,21 @@ const ListingCard = ({
   const isLiked = wishList.find((item) => item?._id === listingId);
 
   const patchWishList = async () => {
-    const response = await fetch(
-      `https://homeheavenserver.phucmai.com/users/${user._id}/${listingId}`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    dispatch(setWishList(data.wishlist));
+    if (user._id !== userId) {
+      const response = await fetch(
+        `https://homeheavenserver.phucmai.com/users/${user._id}/${listingId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      dispatch(setWishList(data.wishlist));
+    } else {
+      return;
+    }
   };
 
   /* SLIDER FOR IMAGES */
@@ -77,7 +82,10 @@ const ListingCard = ({
           {listingPhotosPaths?.map((photo, index) => (
             <div key={index} className="slide">
               <img
-                src={`https://homeheavenserver.phucmai.com/${photo.replace("public", "")}`}
+                src={`https://homeheavenserver.phucmai.com/${photo.replace(
+                  "public",
+                  ""
+                )}`}
                 alt={`photo ${index + 1}`}
               />
               <div

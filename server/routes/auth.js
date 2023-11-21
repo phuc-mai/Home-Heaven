@@ -50,10 +50,7 @@ router.post("/register", upload.single('profileImage'), async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
-      profileImagePath,
-      wishList: [],
-      propertyList: [],
-      tripList: [],
+      profileImagePath
     });
 
     /* save new User */
@@ -101,18 +98,18 @@ router.post("/login", async (req, res) => {
   }
 });
 
-/* USER LOGIN */
-router.post("/googlelogin", async (req, res) => {
-  try {
-    /* Send the user data in the request body */
-    const userData = req.body;
+// /* GOOGLE LOGIN */
+// router.post("/googlelogin", async (req, res) => {
+//   try {
+//     /* Send the user data in the request body */
+//     const userData = req.body;
 
-    res.status(200).json({ user: userData });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: err.message });
-  }
-});
+//     res.status(200).json({ user: userData });
+//   } catch (err) {
+//     console.log(err);
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 
 
