@@ -23,16 +23,15 @@ const Register = () => {
 
   const [passwordMatch, setPasswordMatch] = useState(true);
 
+  useEffect(() => {
+    console.log(formData);
+    setPasswordMatch(formData.password === formData.confirmPassword || formData.confirmPassword === "")
+  }, [formData])
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (formData.password === formData.confirmPassword) {
-      setPasswordMatch(true);
-    } else {
-      setPasswordMatch(false);
-    }
 
     try {
       const form_data = new FormData();
