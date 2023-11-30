@@ -11,6 +11,7 @@ import Trip from "./pages/Trip";
 import Reservation from "./pages/Reservation";
 import Property from "./pages/Property";
 import ListingsPage from "./pages/ListingsPage";
+import SearchPage from "./pages/SeachPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/create-listing" element={<CreateListing />} />
           <Route path="/properties/:listingId" element={<ListingDetails />} />
           <Route path="/properties/category/:category" element={<ListingsPage />} />
+          <Route path="/properties/search/:search" element={<SearchPage />} />
           <Route path="/:userId/wishlist" element={<Wishlist />} />
           <Route path="/:userId/trips" element={<Trip />} />
           <Route path="/:userId/reservations" element={<Reservation />} />

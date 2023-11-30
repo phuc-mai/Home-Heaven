@@ -87,22 +87,47 @@ router.post("/create", upload.array("listingPhotos"), async (req, res) => {
   }
 });
 
-/* GET LISTINGS */
+/* GET LISTINGS BY CATEGORY */
 router.get("/", async (req, res) => {
-  const qCategory= req.query.category
+  const qCategory = req.query.category;
 
   try {
-    let listings
+    let listings;
     if (qCategory) {
-      listings = await Listing.find({ category: qCategory })
+      listings = await Listing.find({ category: qCategory });
     } else {
-      listings = await Listing.find()
+      listings = await Listing.find();
     }
     res.status(202).json(listings);
   } catch (err) {
     res.status(404).json({ error: err.message });
   }
 });
+
+/* GET LISTINGS BY SEARCH */
+router.get("/search/:search", async (req, res) => {
+  const { search } = req.params;
+
+  try {
+    let listings = [];
+    
+    if (search == "all") {
+      listings = await Listing.find().populate("creator");
+    } else {
+      listings = await Listing.find({
+        $or: [
+          { category: { $regex: search, $options: "i" } },
+          { title: { $regex: search, $options: "i" } },
+        ],
+      }).populate("creator");
+    }
+
+    res.status(202).json(listings);
+  } catch (err) {
+    res.status(404).json({ error: err.message });
+  }
+});
+
 
 /* GET USER'S LISTINGS */
 router.get("/:userId/listings", async (req, res) => {
@@ -125,6 +150,5 @@ router.get("/:listingId", async (req, res) => {
     res.status(404).json({ error: err.message });
   }
 });
-
 
 module.exports = router;
